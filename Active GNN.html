@@ -449,6 +449,495 @@ pre[data-line] .line-highlight[data-end]:after {
 </ol>
 </li>
 </ul>
+<hr>
+<h3 class="mume-header" id="active-discriminative-network-representation-learninghttpswwwijcaiorgproceedings20180296pdf"><a href="https://www.ijcai.org/Proceedings/2018/0296.pdf">Active Discriminative Network Representation Learning</a></h3>
+
+<ul>
+<li>
+<p>Problem setup</p>
+<ul>
+<li>a network representation learning method under active learning principle</li>
+<li>pool-based active learning setting, select most informative instance given <strong>query strategy</strong></li>
+<li>Then label the selected node, add to labeled set for network representation learning</li>
+</ul>
+</li>
+<li>
+<p>Method</p>
+<ul>
+<li>AL <strong>Query Strategy</strong>
+<ul>
+<li>uncertainty measure:
+<ul>
+<li><strong>Information Entropy</strong>: prediction from node embedding</li>
+</ul>
+</li>
+<li>representativeness measure:
+<ul>
+<li><strong>Node centrality</strong>: PageRank centrality</li>
+<li><strong>Information density</strong>: K-means on node embedding</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Active Node Selection
+<ul>
+<li>Multi-Armed Bandit Method</li>
+<li>Reward Scheme</li>
+</ul>
+</li>
+<li>Active Discriminative Network Representation
+<ul>
+<li>GCN</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>Datasets</p>
+<ul>
+<li>Citeseer, Cora, Pubmed
+<ul>
+<li>sparse BOW feature vector for each document</li>
+<li>citation links</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>Baselines</p>
+<ul>
+<li>GCN: randomly select node</li>
+<li>AGE: linearly combination of AL query strategy</li>
+<li>ANRMAB-exclude:
+<ul>
+<li>ANRMAB-entropy</li>
+<li>ANRMAB-centrality</li>
+<li>ANRMAB- density</li>
+</ul>
+</li>
+<li>Metrics:
+<ul>
+<li>Macro-F1</li>
+<li>Micro-F1</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h3 class="mume-header" id="towards-active-learning-on-graphs-an-error-bound-minimization-approach-quanquanhttpwebcsuclaedu7eqgupdficdm12pdf"><a href="http://web.cs.ucla.edu/%7Eqgu/pdf/icdm12.pdf">Towards Active Learning on Graphs: An Error Bound Minimization Approach Quanquan</a></h3>
+
+<ul>
+<li>
+<p>Problem setup:</p>
+<ul>
+<li>adaptive method</li>
+<li>non-adaptive method: this paper developed
+<ul>
+<li>present data-dependent generalization error bound for LLGC, using transductive Rademacher Complexity</li>
+<li>actively select nodes by minimizing the empirical transductive Rademacher complexity of LLGC on a graph</li>
+<li>present sequential optimization algorithm to select labeled data</li>
+<li>use LLGC as classfier on labeled data</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>Method:</p>
+<ul>
+<li>
+<p>LLGC:</p>
+<ul>
+<li>graph-based(semi-supervised) learning method</li>
+<li>add Graph Regrlarization</li>
+</ul>
+</li>
+<li>
+<p>Objective function (for selection):</p>
+<ul>
+<li>expected error on unlabeled &lt;= empirical error on the labeled data + empirical transductive Rademacher complexity + confidence term</li>
+<li>non-adaptive, do not know empirical error on the labeled data until label nodes</li>
+<li>only minimize empirical transductive Rademacher complexity for LLGC</li>
+</ul>
+</li>
+<li>
+<p>Sequential optimization</p>
+<ul>
+<li>sequentially select nodes to be labeled is to optimize the above objective.</li>
+<li><img src="./LLGC_OPT.png" alt></li>
+</ul>
+</li>
+<li>
+<p>Learning pipline:</p>
+<ul>
+<li>select nodes by active learning</li>
+<li>train classifier(LLGC) on the graph</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>Datesets</p>
+<ul>
+<li>
+<p>Cora</p>
+<ul>
+<li>2 datasets from DS, PL</li>
+<li>largest connected component is used</li>
+<li>undirected</li>
+</ul>
+</li>
+<li>
+<p>Coauthor</p>
+<ul>
+<li>from DBLP</li>
+<li>author as nodes, weighted edge by papers co-authored</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>Baselines</p>
+<ul>
+<li>active learning:
+<ul>
+<li>Random</li>
+<li><a href="http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.417.4428&amp;rep=rep1&amp;type=pdf">Variance Minimization (VM)</a></li>
+<li><a href="https://papers.nips.cc/paper/3752-label-selection-on-graphs.pdf">METIS</a></li>
+<li><a href="https://arxiv.org/abs/1202.3726">&#x3A8; Maximization (&#x3A8;-Max)</a></li>
+<li>BOUND: Proposed</li>
+</ul>
+</li>
+<li>classifier:
+<ul>
+<li>LLGC: Proposed</li>
+<li>GFHF: used in VM</li>
+<li>MinCut: used in &#x3A8;-Max</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h3 class="mume-header" id="active-learning-on-graphs-via-spanning-treeshttpciteseerxistpsueduviewdocdownloaddoi10113926927reprep1typepdf"><a href="http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.392.6927&amp;rep=rep1&amp;type=pdf">Active Learning on Graphs via Spanning Trees</a></h3>
+
+<ul>
+<li>
+<p>Problem setup:</p>
+<ul>
+<li>node classification, focus on prediction that rely on network topology only</li>
+<li>homophily bias: linked entities tend to have same class--&gt;clusters</li>
+</ul>
+</li>
+<li>
+<p>Method:</p>
+<ul>
+<li>
+<p>define:</p>
+<ul>
+<li>cutsize <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="normal">&#x3A6;</mi><mo stretchy="false">(</mo><mi>y</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">\Phi(y)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">&#x3A6;</span><span class="mopen">(</span><span class="mord mathdefault" style="margin-right:0.03588em;">y</span><span class="mclose">)</span></span></span></span>: number of edges connecting nodes with different labels</li>
+<li>function <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi mathvariant="normal">&#x3A8;</mi><mo>&#x2217;</mo></msup><mo stretchy="false">(</mo><mi>L</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">\Psi^*(L)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord"><span class="mord">&#x3A8;</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.688696em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mbin mtight">&#x2217;</span></span></span></span></span></span></span></span><span class="mopen">(</span><span class="mord mathdefault">L</span><span class="mclose">)</span></span></span></span>: small value correspond to good choice of traninig nodes <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>L</mi></mrow><annotation encoding="application/x-tex">L</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault">L</span></span></span></span> that satisfy homophily</li>
+<li>Together bound from above the number of mistakes on non-training nodes</li>
+</ul>
+</li>
+<li>
+<p>approach:</p>
+<ul>
+<li>use <a href="https://arxiv.org/abs/1301.5112">SEL</a> to minimize <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi mathvariant="normal">&#x3A8;</mi><mo>&#x2217;</mo></msup></mrow><annotation encoding="application/x-tex">\Psi^*</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.688696em;vertical-align:0em;"></span><span class="mord"><span class="mord">&#x3A8;</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.688696em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mbin mtight">&#x2217;</span></span></span></span></span></span></span></span></span></span></span> on a spanning tree of graph</li>
+<li><a href="http://www.iro.umontreal.ca/~lisa/pointeurs/bengio_ssl.pdf">label propagation</a> on entire graph, yields a fast classifier that is better than random selection</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>Datasets</p>
+<ul>
+<li>RCV1 corpus
+<ul>
+<li>build weighted graph using k-NN</li>
+</ul>
+</li>
+<li>DBLP network</li>
+<li>CORA network</li>
+</ul>
+</li>
+<li>
+<p>Baselines</p>
+<ul>
+<li>
+<p>Spanning trees generation:</p>
+<ul>
+<li>RST(Random)</li>
+<li>BFST(Breadth-first)</li>
+</ul>
+</li>
+<li>
+<p>random selection</p>
+</li>
+<li>
+<p>high-degree</p>
+</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h3 class="mume-header" id="bayesian-semi-supervised-learning-with-graph-gaussian-processeshttpspapersnipsccpaper7440-bayesian-semi-supervised-learning-with-graph-gaussian-processespdf"><a href="https://papers.nips.cc/paper/7440-bayesian-semi-supervised-learning-with-graph-gaussian-processes.pdf">Bayesian Semi-supervised Learning with Graph Gaussian Processes</a></h3>
+
+<ul>
+<li>
+<p>Problem setup:</p>
+<ul>
+<li>graph-based semi-supervised learning: relational graph of data points is available</li>
+<li>propose <strong>Gaussian process model</strong>, <strong>scalable variational</strong> inducing approximation method to perform <strong>inference</strong></li>
+<li>review:
+<ul>
+<li>
+<p>Gaussian Process</p>
+<ul>
+<li><strong>priors</strong> on functions in Bayesian Inference</li>
+</ul>
+</li>
+<li>
+<p>Scalable Variational Inference for GP</p>
+</li>
+<li>
+<p>Graph Laplacian</p>
+<ul>
+<li><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mtext mathvariant="bold">L</mtext><mo>=</mo><mtext mathvariant="bold">D</mtext><mo>&#x2212;</mo><mtext mathvariant="bold">A</mtext></mrow><annotation encoding="application/x-tex">\textbf{L} = \textbf{D} - \textbf{A}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68611em;vertical-align:0em;"></span><span class="mord text"><span class="mord textbf">L</span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.76944em;vertical-align:-0.08333em;"></span><span class="mord text"><span class="mord textbf">D</span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">&#x2212;</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.68611em;vertical-align:0em;"></span><span class="mord text"><span class="mord textbf">A</span></span></span></span></span></span></li>
+<li>Graph Laplacian can be viewed as operator on space of functions <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>g</mi><mo>:</mo><mi>V</mi><mo>&#x2192;</mo><mi mathvariant="double-struck">R</mi></mrow><annotation encoding="application/x-tex">g: V \to \R</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.625em;vertical-align:-0.19444em;"></span><span class="mord mathdefault" style="margin-right:0.03588em;">g</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">:</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.22222em;">V</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">&#x2192;</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.68889em;vertical-align:0em;"></span><span class="mord"><span class="mord mathbb">R</span></span></span></span></span><br>
+<span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mtext mathvariant="bold">L</mtext><mo stretchy="false">(</mo><mi>g</mi><mo stretchy="false">)</mo><mo>=</mo><munder><mo>&#x2211;</mo><mrow><mi>v</mi><mo>&#x2208;</mo><mi>N</mi><mi>e</mi><mo stretchy="false">(</mo><mi>n</mi><mo stretchy="false">)</mo></mrow></munder><mo stretchy="false">[</mo><mi>g</mi><mo stretchy="false">(</mo><mi>n</mi><mo stretchy="false">)</mo><mo>&#x2212;</mo><mi>g</mi><mo stretchy="false">(</mo><mi>v</mi><mo stretchy="false">)</mo><mo stretchy="false">]</mo></mrow><annotation encoding="application/x-tex">\textbf{L}(g) = \sum_{v \in Ne(n)}[g(n)-g(v)]</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord text"><span class="mord textbf">L</span></span><span class="mopen">(</span><span class="mord mathdefault" style="margin-right:0.03588em;">g</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:2.5660100000000003em;vertical-align:-1.516005em;"></span><span class="mop op-limits"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.050005em;"><span style="top:-1.808995em;margin-left:0em;"><span class="pstrut" style="height:3.05em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight" style="margin-right:0.03588em;">v</span><span class="mrel mtight">&#x2208;</span><span class="mord mathdefault mtight" style="margin-right:0.10903em;">N</span><span class="mord mathdefault mtight">e</span><span class="mopen mtight">(</span><span class="mord mathdefault mtight">n</span><span class="mclose mtight">)</span></span></span></span><span style="top:-3.0500049999999996em;"><span class="pstrut" style="height:3.05em;"></span><span><span class="mop op-symbol large-op">&#x2211;</span></span></span></span><span class="vlist-s">&#x200B;</span></span><span class="vlist-r"><span class="vlist" style="height:1.516005em;"><span></span></span></span></span></span><span class="mopen">[</span><span class="mord mathdefault" style="margin-right:0.03588em;">g</span><span class="mopen">(</span><span class="mord mathdefault">n</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">&#x2212;</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.03588em;">g</span><span class="mopen">(</span><span class="mord mathdefault" style="margin-right:0.03588em;">v</span><span class="mclose">)</span><span class="mclose">]</span></span></span></span></span></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>Method</p>
+<ul>
+<li>Graph Gaussian Process</li>
+<li>Variational Inference with Inducing Points</li>
+<li>Active learning:
+<ul>
+<li>GGP as classification model paired with <a href="https://www.cs.cmu.edu/~schneide/nips13ma.pdf">&#x3A3;- optimal (SOPT)</a> to form active learner, select + retrain classifier for 50 times</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>Datasets</p>
+<ul>
+<li>Cora, Citeseer, Pubmed</li>
+</ul>
+</li>
+<li>
+<p>Baselines</p>
+<ul>
+<li>
+<p>semi-supervised settings</p>
+<ul>
+<li>GCN, MoNet, DCNN, DeepWalk, Planetoid, ICA, LP, SemiEmb, ManiReg</li>
+</ul>
+</li>
+<li>
+<p>Active learning setting:</p>
+<ul>
+<li>SOPT+GCN/LP</li>
+<li>RAND+GGP/GCN/LP</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h3 class="mume-header" id="batch-mode-active-learning-for-networked-datahttpspeoplecsailmitedulixinfilestistpdf"><a href="https://people.csail.mit.edu/lixin/files/tist.pdf">Batch Mode Active Learning for Networked Data</a></h3>
+
+<ul>
+<li>
+<p>Problem setup</p>
+<ul>
+<li>Batch mode active learning
+<ul>
+<li>query <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>k</mi></mrow><annotation encoding="application/x-tex">k</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.03148em;">k</span></span></span></span> labels of instances <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>S</mi></mrow><annotation encoding="application/x-tex">S</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.05764em;">S</span></span></span></span> to improve quality of learned classification model</li>
+<li>define an objective function for active selection <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Q</mi></mrow><annotation encoding="application/x-tex">Q</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8777699999999999em;vertical-align:-0.19444em;"></span><span class="mord mathdefault">Q</span></span></span></span></li>
+<li>design efficient algorithms to maximize <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Q</mi><mo stretchy="false">(</mo><mi>S</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">Q(S)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault">Q</span><span class="mopen">(</span><span class="mord mathdefault" style="margin-right:0.05764em;">S</span><span class="mclose">)</span></span></span></span></li>
+</ul>
+</li>
+<li>selection combine both context and link information</li>
+<li>present objective function based on maximum uncertainty, maximum impact, and minimum redundancy</li>
+<li>Underlying model: Framework of Random Walk</li>
+</ul>
+</li>
+<li>
+<p>Method</p>
+<ul>
+<li>Objective function <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Q</mi><mo stretchy="false">(</mo><mi>S</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">Q(S)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault">Q</span><span class="mopen">(</span><span class="mord mathdefault" style="margin-right:0.05764em;">S</span><span class="mclose">)</span></span></span></span>: combine maximum uncertainty and the maximum impact, naturally satisfy minimum redundancy</li>
+<li>Use Framework of Random Walk as classification model</li>
+<li>Combining <strong>Link Information</strong>: integrate link information into <strong>similarity matrix</strong>, extend similarity measure with <strong>Pagerank</strong></li>
+<li>Optimization: Greedy selection, monitonic submodular, have good error bound<br>
+<img src="./Batch.png" alt></li>
+<li>Speed up with parallel algorithm</li>
+</ul>
+</li>
+<li>
+<p>Datasets</p>
+<ul>
+<li>Gaussian Synthetic Dataset
+<ul>
+<li>random generated, 17 Gaussian distributions</li>
+<li>no link information</li>
+<li>use KNN to learn classification model</li>
+</ul>
+</li>
+<li>The Networked Synthetic Dataset
+<ul>
+<li>without content information</li>
+</ul>
+</li>
+<li>Real world with links:
+<ul>
+<li>Cora, Citeseer, WebKB</li>
+<li>cast as multiple binary</li>
+</ul>
+</li>
+<li>Real World without Links:
+<ul>
+<li>UCI 20 Newsgroup<br>
+classification tasks</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>Baselines</p>
+<ul>
+<li>Real world with links
+<ul>
+<li>Random</li>
+<li>Most Uncertainty: largest entropy</li>
+<li>Active Learning Using Gaussian Fields</li>
+<li>Hybrid</li>
+<li>k-means</li>
+</ul>
+</li>
+<li>Real world without links
+<ul>
+<li>Random</li>
+<li>Most Uncertainty: largest entropy</li>
+<li>Active Learning Using Gaussian Fields</li>
+<li>SVM</li>
+<li>Fisher</li>
+</ul>
+</li>
+<li>On Gaussian Synthetic Dataset:
+<ul>
+<li>Maximum Uncertainty</li>
+<li>Without Maximum Uncertainty</li>
+<li>Without Minimum Redundancy</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h3 class="mume-header" id="few-shot-learning-on-graphs-via-super-classes-based-on-graph-spectral-measureshttpsopenreviewnetforumidbkeeca4kvr"><a href="https://openreview.net/forum?id=Bkeeca4Kvr">FEW-SHOT LEARNING ON GRAPHS VIA SUPER- CLASSES BASED ON GRAPH SPECTRAL MEASURES</a></h3>
+
+<ul>
+<li>
+<p>Problem setup:</p>
+<ul>
+<li>few-shot setting:
+<ul>
+<li>training: classifier must generalize well after seeing abundant base-class samples</li>
+<li>testing: very few samples from novel class</li>
+</ul>
+</li>
+<li>Details
+<ul>
+<li>training: set of <em>base class</em> labeled graphs <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>G</mi><mi>B</mi></msub><mo>=</mo><mo stretchy="false">{</mo><mo stretchy="false">(</mo><msubsup><mi>g</mi><mi>i</mi><mrow><mo stretchy="false">(</mo><mi>B</mi><mo stretchy="false">)</mo></mrow></msubsup><mo separator="true">,</mo><msubsup><mi>y</mi><mi>i</mi><mrow><mo stretchy="false">(</mo><mi>B</mi><mo stretchy="false">)</mo></mrow></msubsup><mo stretchy="false">)</mo><msubsup><mo stretchy="false">}</mo><mrow><mi>i</mi><mo>=</mo><mn>1</mn></mrow><mi>n</mi></msubsup></mrow><annotation encoding="application/x-tex">G_B = \{(g_i^{(B)}, y_i^{(B)})\}_{i=1}^n</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.83333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathdefault">G</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.32833099999999993em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight" style="margin-right:0.05017em;">B</span></span></span></span><span class="vlist-s">&#x200B;</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1.321664em;vertical-align:-0.27686399999999994em;"></span><span class="mopen">{</span><span class="mopen">(</span><span class="mord"><span class="mord mathdefault" style="margin-right:0.03588em;">g</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.0448em;"><span style="top:-2.4231360000000004em;margin-left:-0.03588em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">i</span></span></span><span style="top:-3.2198em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mopen mtight">(</span><span class="mord mathdefault mtight" style="margin-right:0.05017em;">B</span><span class="mclose mtight">)</span></span></span></span></span><span class="vlist-s">&#x200B;</span></span><span class="vlist-r"><span class="vlist" style="height:0.27686399999999994em;"><span></span></span></span></span></span></span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.03588em;">y</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.0448em;"><span style="top:-2.4231360000000004em;margin-left:-0.03588em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">i</span></span></span><span style="top:-3.2198em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mopen mtight">(</span><span class="mord mathdefault mtight" style="margin-right:0.05017em;">B</span><span class="mclose mtight">)</span></span></span></span></span><span class="vlist-s">&#x200B;</span></span><span class="vlist-r"><span class="vlist" style="height:0.27686399999999994em;"><span></span></span></span></span></span></span><span class="mclose">)</span><span class="mclose"><span class="mclose">}</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.664392em;"><span style="top:-2.441336em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">i</span><span class="mrel mtight">=</span><span class="mord mtight">1</span></span></span></span><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">n</span></span></span></span><span class="vlist-s">&#x200B;</span></span><span class="vlist-r"><span class="vlist" style="height:0.258664em;"><span></span></span></span></span></span></span></span></span></span>, set of <em>novel class</em> labeled graphs <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>G</mi><mi>N</mi></msub><mo>=</mo><mo stretchy="false">{</mo><mo stretchy="false">(</mo><msubsup><mi>g</mi><mi>i</mi><mrow><mo stretchy="false">(</mo><mi>N</mi><mo stretchy="false">)</mo></mrow></msubsup><mo separator="true">,</mo><msubsup><mi>y</mi><mi>i</mi><mrow><mo stretchy="false">(</mo><mi>N</mi><mo stretchy="false">)</mo></mrow></msubsup><mo stretchy="false">)</mo><msubsup><mo stretchy="false">}</mo><mrow><mi>i</mi><mo>=</mo><mn>1</mn></mrow><mi>m</mi></msubsup></mrow><annotation encoding="application/x-tex">G_N = \{(g_i^{(N)}, y_i^{(N)})\}_{i=1}^m</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.83333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathdefault">G</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.32833099999999993em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight" style="margin-right:0.10903em;">N</span></span></span></span><span class="vlist-s">&#x200B;</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1.321664em;vertical-align:-0.27686399999999994em;"></span><span class="mopen">{</span><span class="mopen">(</span><span class="mord"><span class="mord mathdefault" style="margin-right:0.03588em;">g</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.0448em;"><span style="top:-2.4231360000000004em;margin-left:-0.03588em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">i</span></span></span><span style="top:-3.2198em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mopen mtight">(</span><span class="mord mathdefault mtight" style="margin-right:0.10903em;">N</span><span class="mclose mtight">)</span></span></span></span></span><span class="vlist-s">&#x200B;</span></span><span class="vlist-r"><span class="vlist" style="height:0.27686399999999994em;"><span></span></span></span></span></span></span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.03588em;">y</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.0448em;"><span style="top:-2.4231360000000004em;margin-left:-0.03588em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">i</span></span></span><span style="top:-3.2198em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mopen mtight">(</span><span class="mord mathdefault mtight" style="margin-right:0.10903em;">N</span><span class="mclose mtight">)</span></span></span></span></span><span class="vlist-s">&#x200B;</span></span><span class="vlist-r"><span class="vlist" style="height:0.27686399999999994em;"><span></span></span></span></span></span></span><span class="mclose">)</span><span class="mclose"><span class="mclose">}</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.664392em;"><span style="top:-2.441336em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">i</span><span class="mrel mtight">=</span><span class="mord mtight">1</span></span></span></span><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">m</span></span></span></span><span class="vlist-s">&#x200B;</span></span><span class="vlist-r"><span class="vlist" style="height:0.258664em;"><span></span></span></span></span></span></span></span></span></span> used for fine-tuning, where <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>m</mi><mo>&lt;</mo><mo>&lt;</mo><mi>n</mi></mrow><annotation encoding="application/x-tex">m&lt;&lt;n</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.5782em;vertical-align:-0.0391em;"></span><span class="mord mathdefault">m</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">&lt;</span></span><span class="base"><span class="strut" style="height:0.5782em;vertical-align:-0.0391em;"></span><span class="mrel">&lt;</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault">n</span></span></span></span>, set of labels from base class graphs and novel class graphs are disjoint.</li>
+<li>testing: set of ublabeled unseen graphs <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>G</mi><mi>U</mi></msub><mo>=</mo><mo stretchy="false">{</mo><msubsup><mi>g</mi><mi>i</mi><mrow><mo stretchy="false">(</mo><mi>U</mi><mo stretchy="false">)</mo></mrow></msubsup><msubsup><mo stretchy="false">}</mo><mrow><mi>i</mi><mo>=</mo><mn>1</mn></mrow><mi>t</mi></msubsup></mrow><annotation encoding="application/x-tex">G_U = \{g_i^{(U)}\}_{i=1}^t</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.83333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathdefault">G</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.32833099999999993em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight" style="margin-right:0.10903em;">U</span></span></span></span><span class="vlist-s">&#x200B;</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1.321664em;vertical-align:-0.27686399999999994em;"></span><span class="mopen">{</span><span class="mord"><span class="mord mathdefault" style="margin-right:0.03588em;">g</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.0448em;"><span style="top:-2.4231360000000004em;margin-left:-0.03588em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">i</span></span></span><span style="top:-3.2198em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mopen mtight">(</span><span class="mord mathdefault mtight" style="margin-right:0.10903em;">U</span><span class="mclose mtight">)</span></span></span></span></span><span class="vlist-s">&#x200B;</span></span><span class="vlist-r"><span class="vlist" style="height:0.27686399999999994em;"><span></span></span></span></span></span></span><span class="mclose"><span class="mclose">}</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.7935559999999999em;"><span style="top:-2.441336em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">i</span><span class="mrel mtight">=</span><span class="mord mtight">1</span></span></span></span><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">t</span></span></span></span><span class="vlist-s">&#x200B;</span></span><span class="vlist-r"><span class="vlist" style="height:0.258664em;"><span></span></span></span></span></span></span></span></span></span></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>Method:</p>
+<ul>
+<li>Computing super classes
+<ul>
+<li>Prototype Graphs:
+<ul>
+<li>partitioned <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>G</mi><mi>B</mi></msub></mrow><annotation encoding="application/x-tex">G_B</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.83333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathdefault">G</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.32833099999999993em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight" style="margin-right:0.05017em;">B</span></span></span></span><span class="vlist-s">&#x200B;</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span> according to graph labels, <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>G</mi><mi>B</mi></msub><mo>=</mo><msubsup><mo>&#x222A;</mo><mrow><mi>i</mi><mo>=</mo><mn>1</mn></mrow><mi>K</mi></msubsup><msup><mi>G</mi><mrow><mo stretchy="false">(</mo><mi>i</mi><mo stretchy="false">)</mo></mrow></msup></mrow><annotation encoding="application/x-tex">G_B = \cup_{i = 1}^K G^{(i)}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.83333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathdefault">G</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.32833099999999993em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight" style="margin-right:0.05017em;">B</span></span></span></span><span class="vlist-s">&#x200B;</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1.146664em;vertical-align:-0.258664em;"></span><span class="mord"><span class="mbin">&#x222A;</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.8413309999999999em;"><span style="top:-2.441336em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">i</span><span class="mrel mtight">=</span><span class="mord mtight">1</span></span></span></span><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight" style="margin-right:0.07153em;">K</span></span></span></span><span class="vlist-s">&#x200B;</span></span><span class="vlist-r"><span class="vlist" style="height:0.258664em;"><span></span></span></span></span></span></span><span class="mord"><span class="mord mathdefault">G</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8879999999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mopen mtight">(</span><span class="mord mathdefault mtight">i</span><span class="mclose mtight">)</span></span></span></span></span></span></span></span></span></span></span></span></li>
+<li>pick prototype graph <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>p</mi><mi>i</mi></msub></mrow><annotation encoding="application/x-tex">p_i</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.625em;vertical-align:-0.19444em;"></span><span class="mord"><span class="mord mathdefault">p</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.31166399999999994em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">i</span></span></span></span><span class="vlist-s">&#x200B;</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span> for the i-th class with least average spectral distance to rest graphs in the same class</li>
+</ul>
+</li>
+<li>Clustering prototype graphs:
+<ul>
+<li><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>k</mi></mrow><annotation encoding="application/x-tex">k</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.03148em;">k</span></span></span></span>-means</li>
+<li>into <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>k</mi></mrow><annotation encoding="application/x-tex">k</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.03148em;">k</span></span></span></span> super classes</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>GNN
+<ul>
+<li>GIN as graph feature extractor</li>
+</ul>
+</li>
+<li>Classifier
+<ul>
+<li>build super-graph:
+<ul>
+<li>node is graph feature vector</li>
+<li>build on a batch of <em>base-labeled</em> graphs as a collection of k-NN graphs</li>
+<li>each constituent k-NN graph is built on the graphs belonging to the same super-class</li>
+</ul>
+</li>
+<li>super graph passed through multi-layered graph attention network GAT</li>
+<li>graph embedding passed into MLP to learn associated super-class labels</li>
+<li>add cross-entropy losses associated with GAT and MLP</li>
+</ul>
+</li>
+<li>fine-tune:
+<ul>
+<li>fix GIN, MLP, tune GAT</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>Datasets:</p>
+<ul>
+<li>Letter-High, TRIANGLES, Reddit-12K, and ENZYMES.</li>
+</ul>
+</li>
+<li>
+<p>Baselines:</p>
+<ul>
+<li>k-NN search on embeddings
+<ul>
+<li>Supervised:
+<ul>
+<li>GIN, CapsGNN, Diffpool</li>
+</ul>
+</li>
+<li>Unsupervised:
+<ul>
+<li>AWE, Graph2Vec, Weisfeiler- Lehman subtree Kernel, Graphlet count kernel</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Few-shot:
+<ul>
+<li>replace GAT with GCN</li>
+<li>replace classifier with k-NN: GIN-k-NN</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<hr>
 
       </div>
       

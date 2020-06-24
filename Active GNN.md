@@ -333,3 +333,11 @@ classification tasks
 
 ---
 
+### [ACTIVE LEARNING WITH PARTIAL FEEDBACK](https://openreview.net/forum?id=HJfSEnRqKQ)
+
+- Problem setup:
+  - active leanrning with partial feedback:
+    - actively choosing **which example** to annotate and **which questions** to ask
+  -  hierarchically-organized collections, **atomic classes** as leaves and **composite classes** as internal nodes
+  -  learner select (example, class) to ask. only obtain exact label when **atomic class** label remains
+  -  
